@@ -36,6 +36,34 @@
     </div>
   </div>
 
+  <!-- OFFICIAL JUCE TIME CLOCK -->
+  <div style="text-align:center; margin-top:30px;">
+    <div style="
+      display:inline-block;
+      background:#000000;
+      color:#00ff00;
+      font-family:'Courier New', monospace;
+      font-size:36px;
+      font-weight:bold;
+      padding:10px 25px;
+      border:6px ridge #ff00ff;
+      letter-spacing:4px;
+    ">
+      <span id="juce-clock">--:--:--</span>
+    </div>
+    <p style="font-size:16px;">⏰ OFFICIAL JUCE TIME (your timezone actually) ⏰</p>
+  </div>
+  <script>
+    function updateJuceClock() {
+      var now = new Date();
+      var pad = function (n) { return String(n).padStart(2, "0"); };
+      document.getElementById("juce-clock").textContent =
+        pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+    }
+    updateJuceClock();
+    setInterval(updateJuceClock, 1000);
+  </script>
+
   <!-- UNDER CONSTRUCTION -->
   <div style="text-align:center; margin:30px;">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Under_construction_yellow.svg" alt="under construction">
