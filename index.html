@@ -51,13 +51,25 @@
     ">
       <span id="juce-clock">--:--:--</span>
     </div>
-    <p style="font-size:16px;">⏰ OFFICIAL JUCE TIME (your timezone actually) ⏰</p>
+    <p id="juce-clock-caption" style="font-size:16px;">⏰ OFFICIAL JUCE TIME (your timezone actually) ⏰</p>
   </div>
   <script>
     function updateJuceClock() {
       var now = new Date();
+      var clock = document.getElementById("juce-clock");
+      var caption = document.getElementById("juce-clock-caption");
+      if (now.getDay() === 0) {
+        clock.textContent = "the library is closed on sundays";
+        clock.style.fontSize = "20px";
+        clock.style.letterSpacing = "1px";
+        caption.textContent = "📚 come back monday 📚";
+        return;
+      }
+      clock.style.fontSize = "";
+      clock.style.letterSpacing = "";
+      caption.textContent = "⏰ OFFICIAL JUCE TIME (your timezone actually) ⏰";
       var pad = function (n) { return String(n).padStart(2, "0"); };
-      document.getElementById("juce-clock").textContent =
+      clock.textContent =
         pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
     }
     updateJuceClock();
